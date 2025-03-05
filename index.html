@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>String Calculator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        text-align: center;
+        margin: 50px;
+      }
+      .container {
+        background: white;
+        padding: 20px;
+        max-width: 400px;
+        margin: auto;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      input {
+        width: 80%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+      button {
+        background-color: #28a745;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #218838;
+      }
+      .output {
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>String Calculator</h2>
+      <input type="text" id="stringInput" placeholder="Enter a string" />
+      <button onclick="findSumOfString()">Generate Output</button>
+      <p class="output" id="output"></p>
+    </div>
+
+    <script>
+      const findSumOfString = () => {
+        let param = document.getElementById("stringInput").value;
+        let totalSum = 0;
+        let negativeNumber = [];
+        for (let i = 0; i < param.length; i++) {
+          const element = param[i];
+          const character = parseInt(param[i]);
+          const nextCharacter = parseInt(param[i + 1]);
+          // checking if an integer value is negative
+          if (element === "-" && !isNaN(nextCharacter)) {
+            negativeNumber.push(element + nextCharacter);
+          }
+          // calculating sum of string
+          if (!isNaN(character)) {
+            totalSum += character;
+          }
+        }
+        // Check if input is not empty
+        if (param == "") {
+          document.getElementById("output").innerText =
+            "Please enter a string.";
+          // Check if string have negative numbers
+        } else if (negativeNumber.length > 0) {
+          let err = "Negative numbers are not allowed";
+          err = `${err} ${negativeNumber.join(", ")}`;
+          document.getElementById("output").innerText = err;
+          // Calculate Sum of numbers
+        } else {
+          document.getElementById(
+            "output"
+          ).innerText = `Total Sum = ${totalSum}`;
+        }
+      };
+    </script>
+  </body>
+</html>
