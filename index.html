@@ -73,12 +73,8 @@
             totalSum += character;
           }
         }
-        // Check if input is not empty
-        if (param == "") {
-          document.getElementById("output").innerText =
-            "Please enter a string.";
-          // Check if string have negative numbers
-        } else if (negativeNumber.length > 0) {
+        // Check if string have negative numbers
+        if (negativeNumber.length > 0) {
           let err = "Negative numbers are not allowed";
           err = `${err} ${negativeNumber.join(", ")}`;
           document.getElementById("output").innerText = err;
